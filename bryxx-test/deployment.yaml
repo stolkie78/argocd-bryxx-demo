@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-app
+  namespace: bryxx-demo
   labels:
     app: demo-app
 spec:
@@ -19,12 +20,19 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: demo-app
+  namespace: bryxx-demo
   labels:
     app: demo-app
 spec:
@@ -35,11 +43,11 @@ spec:
   selector:
     app: demo-app
 ---
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: demo-app-ingress
+  namespace: bryxx-demo
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
