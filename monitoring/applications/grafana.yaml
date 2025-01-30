@@ -14,7 +14,7 @@ spec:
     chart: grafana
     helm:
       valueFiles:
-      - ../helm-values/grafana-values.yaml
+        - ../helm-values/grafana-values.yaml
   syncPolicy:
     automated:
       prune: true
