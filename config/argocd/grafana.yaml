@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.57.4 # Specifieke versie van Grafana
+    targetRevision: 6.57.4
     chart: grafana
     helm:
       parameters:
@@ -24,8 +24,8 @@ spec:
         value: "5Gi"
       - name: ingress.enabled
         value: "true"
-      - name: ingress.annotations.kubernetes\\.io/ingress\\.class
-        value: "nginx"
+      - name: ingress.annotations."kubernetes.io/ingress.class"
+        value: "nginx" # ✅ Correcte manier om de annotation als string te geven
       - name: ingress.hosts[0]
         value: "grafana.local"
   syncPolicy:
