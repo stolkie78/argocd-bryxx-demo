@@ -1,17 +1,20 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: container-registry
   namespace: argocd
 spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: tools
   project: default
   source:
-    repoURL: https://github.com/jouw-repo.git  # <-- Pas dit aan naar jouw Git-repo
+    repoURL: "https://github.com/stolkie78/argocd-bryxx-demo.git"
+    path: "deployments/container-registry"
     targetRevision: HEAD
-    path: manifests
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
