@@ -2,12 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: registry-ingress
-  namespace: registry
+  namespace: tools
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: registry.example.com
+  - host: registry.local
     http:
       paths:
       - path: /

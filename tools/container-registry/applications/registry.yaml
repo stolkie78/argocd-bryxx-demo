@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: registry
+    namespace: tools
   project: default
   source:
     repoURL: https://github.com/jouw-repo.git  # <-- Pas dit aan naar jouw Git-repo
