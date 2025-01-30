@@ -10,18 +10,19 @@ spec:
   project: default
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 25.8.0 # Specifieke versie van Prometheus
+    targetRevision: 25.8.0
     chart: prometheus
     helm:
-      parameters:
-      - name: alertmanager.enabled
-        value: "true"
-      - name: server.ingress.enabled
-        value: "true"
-      - name: server.ingress.annotations.kubernetes\\.io/ingress\\.class
-        value: "nginx"
-      - name: server.ingress.hosts[0]
-        value: "prometheus.local"
+      values: |
+        alertmanager:
+          enabled: true
+        server:
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+            hosts:
+              - "prometheus.example.com"
   syncPolicy:
     automated:
       prune: true
