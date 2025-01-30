@@ -10,11 +10,22 @@ spec:
   project: default
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: latest
+    targetRevision: 5.10.0 # Kies een geldige versie van de Loki chart
     chart: loki
     helm:
-      valueFiles:
-        - loki-values.yaml
+      parameters:
+      - name: persistence.enabled
+        value: "true"
+      - name: persistence.storageClassName
+        value: "standard"
+      - name: persistence.size
+        value: "10Gi"
+      - name: ingress.enabled
+        value: "true"
+      - name: ingress.annotations.kubernetes\\.io/ingress\\.class
+        value: "nginx"
+      - name: ingress.hosts[0]
+        value: "loki.local"
   syncPolicy:
     automated:
       prune: true
