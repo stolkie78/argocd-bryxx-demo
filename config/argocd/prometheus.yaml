@@ -22,7 +22,7 @@ spec:
             annotations:
               kubernetes.io/ingress.class: "nginx"
             hosts:
-              - "prometheus.example.com"
+              - "prometheus.local"
   syncPolicy:
     automated:
       prune: true
