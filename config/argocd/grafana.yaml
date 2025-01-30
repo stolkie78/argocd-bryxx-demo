@@ -13,21 +13,18 @@ spec:
     targetRevision: 6.57.4
     chart: grafana
     helm:
-      parameters:
-      - name: adminPassword
-        value: "admin123"
-      - name: persistence.enabled
-        value: "true"
-      - name: persistence.storageClassName
-        value: "standard"
-      - name: persistence.size
-        value: "5Gi"
-      - name: ingress.enabled
-        value: "true"
-      - name: ingress.annotations."kubernetes.io/ingress.class"
-        value: "nginx" # ✅ Correcte manier om de annotation als string te geven
-      - name: ingress.hosts[0]
-        value: "grafana.local"
+      values: |
+        persistence:
+          enabled: true
+          storageClassName: standard
+          size: 5Gi
+        adminPassword: admin123
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: "nginx"
+          hosts:
+            - "grafana.local"
   syncPolicy:
     automated:
       prune: true
