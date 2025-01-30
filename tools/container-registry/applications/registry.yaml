@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: container-registry
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: registry
+  project: default
+  source:
+    repoURL: https://github.com/jouw-repo.git  # <-- Pas dit aan naar jouw Git-repo
+    targetRevision: HEAD
+    path: manifests
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
