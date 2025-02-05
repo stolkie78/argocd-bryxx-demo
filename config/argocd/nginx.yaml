@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bryxx-test
+  name: nginx
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: "https://github.com/stolkie78/argocd-bryxx-demo.git"
-    path: "bryxx-test/"
+    path: "nginx/"
     targetRevision: HEAD
     directory:
       recurse: true
